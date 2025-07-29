@@ -1,0 +1,64 @@
+<div class="popular-products">
+  <div class="flex items-center justify-between">
+    <input type="text" [(ngModel)]="searchItem" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block w-2/5 p-2.5" placeholder="Search..." >
+    <select
+    id="categorySelect"
+    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block w-1/5 px-[14px] py-2.5"
+    [(ngModel)]="selectedCategory"
+  >
+    <option value="">All Categories</option>
+    @for (category of categories; track category._id) {
+      <option [value]="category.name">{{ category.name }}</option>
+    }
+  </select>
+  </div>
+  <div class="parent grid md:grid-cols-2 lg:grid-cols-3 md:gap-3 xl:grid-cols-5">
+    @for(product of filteredProducts; track product._id){
+      <div class="relative cursor-pointer p-1 group">
+        <div class="px-2 py-4">
+          <div [routerLink]="['/details',product._id]">
+            <h4 class="text-right mb-2">
+              @if(product.quantity < 10) {
+                <span class="rounded-lg px-7 text-gray-600 text-[18px] mb-2 bg-[#ffff08]"> {{product.quantity}} </span>
+              }
+            </h4>
+            <img [src]="product.imageCover" class="w-full object-contain h-[250px]" alt="">
+            <h3 class="font-bold text-[20px] line-clamp-1 cursor-pointer">{{ product.title }}</h3>
+            <h4 class="text-green-600 text-[17px] font-medium line-clamp-1 cursor-pointer">{{ product.category.name }}</h4>
+            <div class="flex justify-between items-center">
+              <span>{{ product.price }} EGP</span>
+              <div class="flex items-center">
+                <i class="fa-solid fa-star text-yellow-500"></i>
+                <span class="text-gray-500">{{ product.ratingsAverage }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="opacity-0 flex items-center gap-2 -translate-y-[300px] group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-[1s]">
+            <button
+              type="button"
+              class="text-white cursor-pointer bg-green-700 py-[5px] px-[30px] w-full mt-[10px] rounded-[10px]">
+              Add To Cart
+            </button>
+            <button (click)="toggleLike(product._id)" class="cursor-pointer text-3xl font-semibold">
+              <i class="fa-solid fa-heart" [ngClass]="isProductLiked(product._id) ? 'text-red-500' : 'text-gray-500'"></i>
+            </button>
+          </div>
+          <div class="flex justify-center items-center gap-4 mt-2">
+            @if (product.images[0]) {
+              <img [src]="product.images[0]" class="size-[70px] rounded-md" alt="">
+            }
+            @if (product.images[1]) {
+              <img [src]="product.images[1]" class="size-[70px] rounded-md" alt="">
+            }
+            @if (product.images[2]) {
+              <img [src]="product.images[2]" class="size-[70px] rounded-md" alt="">
+            }
+            @if (product.images[3]) {
+              <img [src]="product.images[3]" class="size-[70px] rounded-md" alt="">
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

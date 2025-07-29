@@ -1,0 +1,12 @@
+<div class="popular-products">
+  <div class="parent grid md:grid-cols-2 lg:grid-cols-3 md:gap-3 xl:grid-cols-4">
+    @for(brand of brands; track brand._id) {
+      <div class="relative cursor-pointer p-1 group">
+        <div class="pb-4 border-[1px] border-gray-600 hover:border-green-600 transition-all duration-500 rounded-lg shadow">
+          <img [src]="brand.image" class="w-full object-contain mb-3 h-[250px]" alt="">
+          <h3 class="font-bold text-[20px] text-green-600 text-center line-clamp-1 cursor-pointer">{{ brand.name }}</h3>
+        </div>
+      </div>
+    }
+  </div>
+</div>
