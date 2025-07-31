@@ -9,6 +9,7 @@ import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SearchPipe } from '../../shared/pipes/search/search.pipe';
 import { CartService } from '../../core/services/cart/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
   private readonly productsService = inject(ProductsService)
   private readonly cartService = inject(CartService)
   private readonly categoriesService = inject(CategoriesService)
+  private readonly toastrService = inject(ToastrService)
   searchItem:string = "";
   products:Products[] = [];
   categories:Categories[] = [];
@@ -49,9 +51,12 @@ export class HomeComponent implements OnInit {
   }
 
   toggleLike(productId: string): void {
-  this.likedProducts[productId] = !this.likedProducts[productId];
-  localStorage.setItem('likedProducts', JSON.stringify(this.likedProducts));
+    this.likedProducts[productId] = !this.likedProducts[productId];
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('likedProducts', JSON.stringify(this.likedProducts));
+    }
   }
+
   isProductLiked(productId: string): boolean {
     return this.likedProducts[productId] === true;
   }
@@ -59,6 +64,7 @@ export class HomeComponent implements OnInit {
   addProductToCart(id:string) {
     this.cartService.addProdToCart(id).subscribe({
       next:(res) => {
+        this.cartService.numberOfCart.next(res.numOfCartItems)
       },error:(err) => {
         console.log(err)
       }
@@ -70,6 +76,7 @@ export class HomeComponent implements OnInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: false,
+    rtl:true,
     dots: false,
     navSpeed: 700,
     autoplay: true,
@@ -97,6 +104,7 @@ export class HomeComponent implements OnInit {
     loop: true,
     mouseDrag: true,
     touchDrag: true,
+    rtl:true,
     pullDrag: false,
     autoplay: true,
     autoplayHoverPause: true,

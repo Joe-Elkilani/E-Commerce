@@ -34,7 +34,9 @@ export class UserService {
 
 
   signOut(): void {
-    localStorage.removeItem("token");
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem("token");
+    }
     this.userData = null;
     this.isLoggedIn.next(false);
     this.router.navigate(["/login"]);

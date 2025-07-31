@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../environment/environment';
 
 @Injectable({
@@ -9,39 +9,24 @@ import { environment } from '../../environment/environment';
 export class CartService {
 
   constructor(private readonly httpClient: HttpClient) { }
-
-  private get token(): string {
-    return localStorage.getItem('token') || '';
-  }
+  numberOfCart:BehaviorSubject<number> = new BehaviorSubject(0)
 
   getCarts(): Observable<any> {
-    return this.httpClient.get(`${environment.baseUrl}api/v1/cart`, {
-      headers: { token: this.token }
-    });
+    return this.httpClient.get(`${environment.baseUrl}api/v1/cart`,);
   }
 
   addProdToCart(id: string): Observable<any> {
     return this.httpClient.post(`${environment.baseUrl}api/v1/cart`, {
       productId: id
-    }, {
-      headers: { token: this.token }
     });
   }
   removespecificcartItem(id: string): Observable<any> {
-    return this.httpClient.delete(`${environment.baseUrl}api/v1/cart/${id}`,{
-      headers: { token: this.token }
-    });
+    return this.httpClient.delete(`${environment.baseUrl}api/v1/cart/${id}`);
   }
   clearUserCart(id: string): Observable<any> {
-    return this.httpClient.delete(`${environment.baseUrl}api/v1/cart`,{
-      headers: { token: this.token }
-    });
+    return this.httpClient.delete(`${environment.baseUrl}api/v1/cart`);
   }
-  updateCartProductQuantity(quantity:any,id:string): Observable<any> {
-    return this.httpClient.put(`${environment.baseUrl}api/v1/cart/${id}`,{
-    "count": quantity
-    },{
-      headers: { token: this.token }
-    });
+  updateCartProductQuantity(productId: string, count: number): Observable<any> {
+    return this.httpClient.put(`${environment.baseUrl}api/v1/cart/${productId}`, { count });
   }
 }

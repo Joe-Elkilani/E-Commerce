@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { UserService } from '../../core/services/user/user.service';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,TranslatePipe],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

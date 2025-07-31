@@ -13,20 +13,34 @@
       <ul class="font-medium flex items-center flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-4 rtl:space-x-reverse md:mt-0 md:border-0">
         @if (loggedIn()) {
           <li>
-            <a routerLink="/home" routerLinkActive="text-white bg-green-600 rounded-lg" class="block py-2 px-3 text-gray-500 hover:text-green-500 transition-all duration-500 rounded-sm md:border-0 md:p-1">Home</a>
+            <a routerLink="/home" routerLinkActive="text-white bg-green-600 rounded-lg hover:text-gray-500" class="block py-2 px-3 text-gray-500 hover:text-green-500 transition-all duration-500 rounded-sm md:border-0 md:p-1"> {{"navbar.HOME" | translate}} </a>
           </li>
           <li>
-            <a routerLink="/products" routerLinkActive="text-white bg-green-600 rounded-lg" class="block py-2 px-3 text-gray-500 hover:text-green-500 transition-all duration-500 rounded-sm md:border-0 md:p-1">Products</a>
+            <a routerLink="/products" routerLinkActive="text-white bg-green-600 rounded-lg hover:text-gray-500" class="block py-2 px-3 text-gray-500 hover:text-green-500 transition-all duration-500 rounded-sm md:border-0 md:p-1">{{"navbar.PRODUCTS" | translate}}</a>
           </li>
           <li>
-            <a routerLink="/categories" routerLinkActive="text-white bg-green-600 rounded-lg"  class="block py-2 px-3 text-gray-500 hover:text-green-500 transition-all duration-500 rounded-sm md:border-0 md:p-1">Categories</a>
+            <a routerLink="/categories" routerLinkActive="text-white bg-green-600 rounded-lg hover:text-gray-500"  class="block py-2 px-3 text-gray-500 hover:text-green-500 transition-all duration-500 rounded-sm md:border-0 md:p-1">{{"navbar.CATEGORIES" | translate}}</a>
           </li>
           <li>
-            <a routerLink="/brands" routerLinkActive="text-white bg-green-600 rounded-lg" class="block py-2 px-3 text-gray-500 hover:text-green-500 transition-all duration-500 rounded-sm md:border-0 md:p-1">Brands</a>
+            <a routerLink="/brands" routerLinkActive="text-white bg-green-600 rounded-lg hover:text-gray-500" class="block py-2 px-3 text-gray-500 hover:text-green-500 transition-all duration-500 rounded-sm md:border-0 md:p-1">{{"navbar.BRANDS" | translate}}</a>
           </li>
         }
       </ul>
       <ul class="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-4 rtl:space-x-reverse md:mt-0 md:border-0">
+        <button id="dropdownDelayButton" data-dropdown-toggle="dropdownDelay" data-dropdown-delay="500" data-dropdown-trigger="hover" class="text-white bg-gray-400 hover:bg-gray-500 transition-all duration-500 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">{{"navbar.CHANGE_LANG" | translate}} <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+        </svg>
+        </button>
+        <div id="dropdownDelay" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
+            <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDelayButton">
+              <li [class.hidden]="currentLang('en')">
+                <a class="block px-4 py-2 hover:bg-gray-100" (click)="changeLang('en')">{{"navbar.ENGLISH" | translate}}</a>
+              </li>
+              <li [class.hidden]="currentLang('ar')">
+                <a class="block px-4 py-2 hover:bg-gray-100" (click)="changeLang('ar')">{{"navbar.ARABIC" | translate}}</a>
+              </li>
+            </ul>
+        </div>
         <li>
           <a href="https://www.instagram.com/" target="_blank" class="block py-2 px-3 md:hover:text-fuchsia-800 transition-all duration-500 rounded-sm md:border-0 text-gray-600 md:p-0"><i class="fa-brands fa-instagram"></i></a>
         </li>
@@ -47,21 +61,21 @@
         </li>
         @if (!loggedIn()) {
           <li>
-            <a routerLink="/login" routerLinkActive="text-white bg-green-600 rounded-lg"  class="block py-2 px-3 text-gray-500 hover:text-green-500 transition-all duration-500 rounded-sm md:border-0 md:p-1">LogIn</a>
+            <a routerLink="/login" routerLinkActive="text-white bg-green-600 rounded-lg"  class="block py-2 px-3 text-gray-500 hover:text-green-500 transition-all duration-500 rounded-sm md:border-0 md:p-1">{{"navbar.LOGIN" | translate}}</a>
           </li>
           <li>
-            <a routerLink="/register" routerLinkActive="text-white bg-green-600 rounded-lg" class="block py-2 px-3 text-gray-500 hover:text-green-500 transition-all duration-500 rounded-sm md:border-0 md:p-1">Register</a>
+            <a routerLink="/register" routerLinkActive="text-white bg-green-600 rounded-lg" class="block py-2 px-3 text-gray-500 hover:text-green-500 transition-all duration-500 rounded-sm md:border-0 md:p-1">{{"navbar.REGISTER" | translate}}</a>
           </li>
         }@else {
           <li class="relative">
             <a
-              routerLink="/cart" routerLinkActive="text-gray-600" class="block py-2 px-3 text-gray-500 rounded-sm md:border-0 md:hover:text-gray-600 md:p-0">
+              routerLink="/cart" routerLinkActive="text-green-600 text-2xl" class="block py-2 px-3 text-gray-500 rounded-sm md:border-0 md:hover:text-gray-600 md:p-0">
               <i class="fa-solid fa-cart-shopping hover:text-green-600 transition-all duration-500"></i>
-              <span class="absolute -top-1 start-3 bg-green-600 rounded px-1 text-xs text-white">10</span>
+              <span class="absolute -top-1 start-3 bg-green-600 rounded px-1 text-xs text-white"> {{numOfCartItems}} </span>
             </a>
           </li>
           <li>
-            <a class="block py-2 px-3 text-gray-500 hover:text-green-500 rounded-sm md:border-0 cursor-pointer md:hover:text-green-500 transition-all duration-500 md:p-0" (click)="signOut()">SignOut</a>
+            <a class="block py-2 px-3 text-gray-500 hover:text-green-500 rounded-sm md:border-0 cursor-pointer md:hover:text-green-500 transition-all duration-500 md:p-0" (click)="signOut()">{{"navbar.SIGNOUT" | translate}}</a>
           </li>
         }
       </ul>

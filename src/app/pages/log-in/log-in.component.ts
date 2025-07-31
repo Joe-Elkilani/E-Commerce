@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { UserService } from '../../core/services/user/user.service';
 import { Router, RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-log-in',
-  imports: [ReactiveFormsModule,RouterLink],
+  imports: [ReactiveFormsModule,RouterLink,TranslatePipe],
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.css'
 })
@@ -19,7 +20,7 @@ export class LogInComponent {
   scc:boolean = false;
 
   logInForm : FormGroup = new FormGroup({
-    email: new FormControl(null, [Validators.required]),
+    email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required]),
   })
 

@@ -22,7 +22,8 @@ export class CartComponent implements OnInit {
   getAllCart() {
     this.cartService.getCarts().subscribe({
       next: (res) => {
-        this.carts = res.data;
+        console.log(res)
+        this.carts = res;
       },
       error: (err) => {
         console.error('Error:', err);
@@ -32,7 +33,8 @@ export class CartComponent implements OnInit {
   removespecificcartItem(id:string) {
     this.cartService.removespecificcartItem(id).subscribe({
       next: (res) => {
-        this.carts = res.data;
+        this.getAllCart()
+        this.cartService.numberOfCart.next(res.numOfCartItems)
       },
       error: (err) => {
         console.error('Error:', err);
@@ -42,22 +44,27 @@ export class CartComponent implements OnInit {
   clearUserCart(id:string) {
     this.cartService.clearUserCart(id).subscribe({
       next: (res) => {
-        this.carts = res.data;
+        console.log(res)
         this.carts = {} as Cart;
+        this.cartService.numberOfCart.next(0)
       },
       error: (err) => {
         console.error('Error:', err);
       }
     });
   }
-  updateCartProductQuantity(id:string,quantity:any){
-    this.cartService.updateCartProductQuantity(id,quantity).subscribe({
-      next: (res) => {
-        this.carts = res.data;
-      },
-      error: (err) => {
-        console.error('Error:', err);
-      }
-    });
-  }
+updateCartProductQuantity(id: string, quantity: number) {
+  if (quantity < 1) return; // حماية من الطلبات غير الصحيحة
+
+  this.cartService.updateCartProductQuantity(id, quantity).subscribe({
+    next: (res) => {
+      this.getAllCart();
+    },
+    error: (err) => {
+      console.error('Error:', err);
+    }
+  });
+}
+
+
 }

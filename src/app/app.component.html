@@ -2,4 +2,16 @@
   <app-navbar></app-navbar>
   <router-outlet></router-outlet>
   <app-footer></app-footer>
+  <ngx-spinner
+    bdColor="rgba(0, 0, 0, 0.5)"
+    size="medium"
+    color="#10b981"
+    type="ball-scale-multiple"
+    [fullScreen]="true"
+  >
+    <div class="flex flex-col items-center gap-4 mt-6">
+      <img src="/img/freshcart-logo.svg" alt="Loading" class="w-[300px] animate-pulse" />
+      <p class="text-white text-xl font-semibold">Loading...</p>
+    </div>
+  </ngx-spinner>
 </section>

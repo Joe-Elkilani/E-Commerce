@@ -1,0 +1,41 @@
+{
+  "navbar":{
+    "HOME": "Home",
+    "PRODUCTS": "Products",
+    "CATEGORIES": "Categories",
+    "BRANDS": "Brands",
+    "CHANGE_LANG": "Change Language",
+    "ENGLISH": "English",
+    "ARABIC": "Arabic",
+    "LOGIN": "Log In",
+    "REGISTER": "Register",
+    "SIGNOUT": "Sign Out"
+  },"Auth":{
+    "loginTitle": "LogIn Now:-",
+    "emailLabel": "Email:-",
+    "emailPlaceholder": "Email...",
+    "passwordLabel": "Password:-",
+    "passwordPlaceholder": "Password...",
+    "forgotPassword": "Forgot password?",
+    "loginBtn": "LogIn",
+    "registerTitle": "Register Now:-",
+    "nameLabel": "Name:-",
+    "namePlaceholder": "Name...",
+    "rePasswordLabel": "RePassword:-",
+    "rePasswordPlaceholder": "RePassword...",
+    "phoneLabel": "Phone:-",
+    "phonePlaceholder": "Phone...",
+    "signUpBtn": "SignUp",
+    "required": "{{field}} is required",
+    "invalidEmail": "Enter valid email",
+    "nameMinLength": "Name should be at least 3 characters",
+    "nameMaxLength": "Name should be at most 20 characters",
+    "passwordPattern": "Password must start with uppercase and be 6+ characters",
+    "rePasswordMismatch": "Password confirmation is incorrect",
+    "phonePattern": "Accept only Egyptian phone numbers",
+    "close": "Close",
+    "changeLang": "Change Language",
+    "english": "English",
+    "arabic": "Arabic"
+  }
+}

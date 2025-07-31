@@ -1,0 +1,41 @@
+{
+  "navbar":{
+    "HOME": "الرئيسية",
+    "PRODUCTS": "المنتجات",
+    "CATEGORIES": "التصنيفات",
+    "BRANDS": "الماركات",
+    "CHANGE_LANG": "تغيير اللغة",
+    "ENGLISH": "الإنجليزية",
+    "ARABIC": "العربية",
+    "LOGIN": "تسجيل الدخول",
+    "REGISTER": "إنشاء حساب",
+    "SIGNOUT": "تسجيل الخروج"
+  },"Auth":{
+    "loginTitle": "تسجيل الدخول الآن :-",
+    "emailLabel": "البريد الإلكتروني :-",
+    "emailPlaceholder": "البريد الإلكتروني...",
+    "passwordLabel": "كلمة المرور :-",
+    "passwordPlaceholder": "كلمة المرور...",
+    "forgotPassword": "هل نسيت كلمة المرور؟",
+    "loginBtn": "تسجيل الدخول",
+    "registerTitle": "إنشاء حساب جديد :-",
+    "nameLabel": "الاسم :-",
+    "namePlaceholder": "الاسم...",
+    "rePasswordLabel": "تأكيد كلمة المرور :-",
+    "rePasswordPlaceholder": "تأكيد كلمة المرور...",
+    "phoneLabel": "رقم الهاتف :-",
+    "phonePlaceholder": "رقم الهاتف...",
+    "signUpBtn": "إنشاء الحساب",
+    "required": "حقل {{field}} مطلوب",
+    "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح",
+    "nameMinLength": "يجب أن يكون الاسم 3 أحرف على الأقل",
+    "nameMaxLength": "يجب ألا يزيد الاسم عن 20 حرفًا",
+    "passwordPattern": "كلمة المرور يجب أن تبدأ بحرف كبير وتكون أكثر من 6 أحرف",
+    "rePasswordMismatch": "تأكيد كلمة المرور غير صحيح",
+    "phonePattern": "يُسمح فقط بأرقام الهواتف المصرية",
+    "close": "إغلاق",
+    "changeLang": "تغيير اللغة",
+    "english": "الإنجليزية",
+    "arabic": "العربية"
+  }
+}

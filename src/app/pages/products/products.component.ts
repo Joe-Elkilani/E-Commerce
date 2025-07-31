@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CategoriesService } from '../../core/services/categories/categories.service';
 import { Categories } from '../../shared/interfaces/categories/categories';
+import { CartService } from '../../core/services/cart/cart.service';
 
 @Component({
   selector: 'app-products',
@@ -16,6 +17,7 @@ import { Categories } from '../../shared/interfaces/categories/categories';
 export class ProductsComponent {
   private readonly productsService = inject(ProductsService)
   private readonly categoriesService = inject(CategoriesService)
+  private readonly cartService = inject(CartService)
   products:Products[] = [];
   searchItem:string = "";
   selectedCategory: string = '';
@@ -54,11 +56,20 @@ export class ProductsComponent {
     this.callProducts()
     this.callCategories()
   }
-    toggleLike(productId: string): void {
-  this.likedProducts[productId] = !this.likedProducts[productId];
-  localStorage.setItem('likedProducts', JSON.stringify(this.likedProducts));
+  toggleLike(productId: string): void {
+    this.likedProducts[productId] = !this.likedProducts[productId];
+    localStorage.setItem('likedProducts', JSON.stringify(this.likedProducts));
   }
   isProductLiked(productId: string): boolean {
     return this.likedProducts[productId] === true;
+  }
+    addProductToCart(id:string) {
+    this.cartService.addProdToCart(id).subscribe({
+      next:(res) => {
+        this.cartService.numberOfCart.next(res.numOfCartItems)
+      },error:(err) => {
+        console.log(err)
+      }
+    })
   }
 }
