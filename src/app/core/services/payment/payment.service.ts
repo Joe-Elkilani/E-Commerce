@@ -8,17 +8,19 @@ import { environment } from '../../environment/environment';
 })
 export class PaymentService {
 
-  constructor(private readonly httpClient:HttpClient) { }
-    private get token(): string {
-  if (typeof window !== 'undefined') {
-    return localStorage.getItem('token') || '';
-  }
-  return '';
-}
+  constructor(private readonly httpClient: HttpClient) { }
 
-  checkOut(id:string,data:object):Observable<any> {
-    return this.httpClient.post(`${environment.baseUrl}api/v1/orders/checkout-session/${id}?url=http://localhost:4200`,{
-    "shippingAddress":data
-      })
+  private get token(): string {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('token') || '';
+    }
+    return '';
+  }
+
+  checkOut(id: string, data: object): Observable<any> {
+    const redirectUrl = typeof window !== 'undefined' ? window.location.origin : 'http://localhost:4200'; // fallback للـ SSR
+    return this.httpClient.post(`${environment.baseUrl}api/v1/orders/checkout-session/${id}?url=${redirectUrl}`, {
+      shippingAddress: data
+    });
   }
 }
