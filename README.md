@@ -15,7 +15,4 @@
 - **CSS3** – Layout with Grid/Flexbox, animations, media queries  
 - **JavaScript** – Cart logic, dynamic UI updates  
 - (**Optional**) Node.js / Express / MongoDB or similar backend  
-- (**Optional**) Build tools: npm scripts, Webpack, bundlers  
-
-## 📁 Project Structure
-
+- (**Optional**) Build tools: npm scripts, Webpack, bundlers
